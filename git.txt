@@ -1,0 +1,5 @@
+git clone <git ssh url> <'folder name'>
+cd <'folder name'>
+git add .
+git commit -m "message"
+git push
