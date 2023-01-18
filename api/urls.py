@@ -6,6 +6,7 @@ RootUrls=[
         path('',ListAppUrls.as_view(),name='list-app-urls') ,
         ]
 
+
 RoomsUrls=[
         
     path('rooms',ListRooms.as_view(),name='list-rooms') ,
