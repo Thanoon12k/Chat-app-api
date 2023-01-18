@@ -7,13 +7,40 @@ from .serializers import *
 
 
 
-class RoomsList(generics.ListAPIView):
+class ListRooms(generics.ListAPIView):
     """ list of all rooms """
     permission_classes=[permissions.BasePermission]
-    serializer_class=rooms_list_ser
+    serializer_class=base_room_ser
     queryset=Room.objects.all()
-class RoomMessagesList(generics.ListAPIView):
+class CreateRoom(generics.CreateAPIView):
     """ list of all rooms """
     permission_classes=[permissions.BasePermission]
-    serializer_class=room_messages_ser
+    serializer_class=base_room_ser
+    queryset=Room.objects.all()
+class DetailRoom(generics.RetrieveUpdateDestroyAPIView):
+    """ list of all rooms """
+    permission_classes=[permissions.BasePermission]
+    serializer_class=base_room_ser
+    queryset=Room.objects.all()
+class ListMessages(generics.ListAPIView):
+    """ list of all rooms """
+    def get_queryset(self):
+        pk=self.kwargs['pk']
+        return Message.objects.filter(room_id=pk)
+    permission_classes=[permissions.BasePermission]
+    serializer_class=base_message_ser
+    queryset=Message.objects.all()
+
+class CreateMessage(generics.CreateAPIView):
+    """ list of all rooms """
+    permission_classes=[permissions.BasePermission]
+    serializer_class=base_message_ser
+    queryset=Message.objects.all()
+class DetailMessage(generics.RetrieveUpdateDestroyAPIView):
+    """ list of all rooms """
+    def get_object(self):
+        pk=self.kwargs['msg_id']
+        return Message.objects.filter(id=pk).first()
+    permission_classes=[permissions.BasePermission]
+    serializer_class=base_message_ser
     queryset=Message.objects.all()
