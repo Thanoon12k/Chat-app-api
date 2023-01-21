@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'usersapp',
     'rest_framework',
     'rest_framework.authtoken',
+    'channels',
+
 
  
 ]
@@ -27,6 +29,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication', ]
 }
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +60,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat.wsgi.application'
+ASGI_APPLICATION = 'chat.asgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 ROOT_URLCONF = 'chat.urls'
 
 DATABASES = {

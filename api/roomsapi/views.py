@@ -27,12 +27,13 @@ class DetailRoom(generics.RetrieveUpdateDestroyAPIView):
     queryset=Room.objects.all()
 class ListMessages(generics.ListAPIView):
     """ list of all rooms """
-    def get_queryset(self):
-        pk=self.kwargs['pk']
-        return Message.objects.filter(room_id=pk)
     permission_classes=[permissions.BasePermission]
     serializer_class=base_message_ser
     queryset=Message.objects.all()
+    def get_queryset(self):
+        pk=self.kwargs['pk']
+        return Message.objects.filter(room_id=pk)
+    
 
 class CreateMessage(generics.CreateAPIView):
     """ list of all rooms """

@@ -1,12 +1,13 @@
 
-get http://127.0.0.1:8000/rooms/5/messages HTTP/1.1
+get http://127.0.0.1:8000/rooms-live HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
 &pharmacy_name= be beauty 
 ###
-POST http://127.0.0.1:8000/rooms/5/messages/new HTTP/1.1
+POST http://127.0.0.1:8000/rooms/4/ban_member/5 HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
+&pharmacy_name= be beauty 
 &text= forth message
 &room_id=5
 ###

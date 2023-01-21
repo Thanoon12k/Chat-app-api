@@ -17,6 +17,10 @@ class Users(AbstractUser):
     notification        = models.BooleanField(default=False)
     is_banned           = models.BooleanField(default=False)
     is_admin            = models.BooleanField(default=False)
+    ip               = models.CharField(blank=True,null=True ,max_length=100)
+    mac                = models.CharField(blank=True,null=True ,max_length=100)
+    
+
     USERNAME_FIELD = 'name'
     objects = UserManager()
     def __str__(self):
