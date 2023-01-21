@@ -16,8 +16,6 @@ INSTALLED_APPS = [
     'usersapp',
     'rest_framework',
     'rest_framework.authtoken',
-    'channels',
-
 
  
 ]
@@ -60,7 +58,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'chat.wsgi.application'
-ASGI_APPLICATION = 'chat.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {

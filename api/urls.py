@@ -1,8 +1,12 @@
+from rest_framework.schemas import get_schema_view
+from rest_framework.documentation import include_docs_urls
+from rest_framework_swagger.views import get_swagger_view
+
+
 from django.urls import path
 from api.roomsapi.views import *
 from api.usersapi.views import *
 from .views import ListAppUrls
-from api.roomsapi.Live import *
 RootUrls=[
         path('',ListAppUrls.as_view(),name='list-app-urls') ,
         ]
@@ -31,9 +35,20 @@ UsersUrls=[
 
 LiveUrls=[
 
-        path('rooms-live/',LiveRooms.as_asgi(),name='list-rooms') ,
+        # path('rooms-live/',LiveRooms.as_asgi(),name='list-rooms') ,
     
 
 ]
+DocsUrls=[
 
-urlpatterns=RootUrls+RoomsUrls+LiveUrls+UsersUrls
+      path('docs',include_docs_urls(title='IRAQ CHAT APP')),
+      path('swagger',get_swagger_view(title='IRAQ CHAT APP')),
+      path('shema',get_schema_view(title='IRAQ CHAT APP', description='api for iraq chat app website', version='1.0.0',)
+                                           ,name='Schema')
+
+
+]
+
+
+
+urlpatterns=RootUrls+RoomsUrls+LiveUrls+UsersUrls+DocsUrls
