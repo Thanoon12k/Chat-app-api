@@ -6,6 +6,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 INSTALLED_APPS = [
+    'daphne',
+    # 'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -13,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      'roomsapp',
+    'asgiapp',
     'usersapp',
     'rest_framework',
     'rest_framework.authtoken',
@@ -95,12 +98,14 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+
 USE_TZ = True
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'usersapp.Users'
 
 
+ASGI_APPLICATION = "chat.asgi.application"
 
 
 
