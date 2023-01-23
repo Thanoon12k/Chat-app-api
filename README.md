@@ -27,3 +27,16 @@ git add .
 git commit -m "msg"
 git push
 
+
+
+docker run -p 6379:6379 -d redis:5
+
+import channels.layers
+from asgiref.sync import async_to_sync
+import asyncio
+ch = channels.layers.get_channel_layer()
+async_to_sync(ch.send)('test_channel', {'type': 'hello'})
+async_to_sync(ch.receive)('test_channel')
+
+
+loop = asyncio.get_event_loop()

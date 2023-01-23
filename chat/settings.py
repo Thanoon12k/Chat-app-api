@@ -7,7 +7,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'daphne',
-    # 'channels',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,12 +61,17 @@ TEMPLATES = [
     },
 ]
 
+
+ASGI_APPLICATION = "chat.asgi.application"
 WSGI_APPLICATION = 'chat.wsgi.application'
 
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
 }
 ROOT_URLCONF = 'chat.urls'
 
@@ -103,12 +108,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'usersapp.Users'
-
-
-ASGI_APPLICATION = "chat.asgi.application"
-
-
-
-
 
 
