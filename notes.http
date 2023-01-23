@@ -20,3 +20,20 @@ creating the cunsomers and setup channels
 👽
 👽
 
+///*****interface sockets in js
+ //******************************************************************************************************
+ const chatSocket = new WebSocket( 'ws://' + window.location.host  +'/' + roomName  + '/' );//send handshaking signal.
+       //*this path must same the route path in backend windows.lochosts=127.0.0.1/
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').value = (data.message);
+        };
+        document().onclick = function(e) {
+                    chatSocket.send(JSON.stringify({'message': 'hello' }));
+                };
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+        chatSocket.onopen=function(e) {
+            console.error('Chat open now');
+        }

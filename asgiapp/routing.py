@@ -1,7 +1,21 @@
-from django.urls import re_path
+from django.urls import re_path,path
 
-from . import consumers
+from .async_cons import async_msg
+from .sync_cons import   sync_msg
 
 ws_urlpatterns = [
-    re_path(r"ws/chat/(?P<room_name>\w+)/$", consumers.ChatConsumer.as_asgi()),
+    path("rooms/<room_name>/", sync_msg.as_asgi(),name='messages-manager'),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    # path("ws/chat/<room_name>/", ChatConsumer.as_asgi()),
+    
+
+
+
 ]
