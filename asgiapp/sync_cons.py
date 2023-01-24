@@ -3,6 +3,11 @@ from roomsapp.models import Message,Room
 
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+def save_to_db(room,txt):
+        room=Room.objects.filter(name=room).first()  
+        Message.objects.create(text=txt,room_id=room)
+        print(txt ,' saved')
+
 
 class sync_msg(WebsocketConsumer):
     def connect(self):
@@ -11,11 +16,15 @@ class sync_msg(WebsocketConsumer):
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name, self.channel_name
         )
+        ########################## send old messages to all cliens
         room=Room.objects.filter(name=self.room_name).first()
-        # msgs=Message.objects.filter(room_id=room)
-        async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name, {"type": "chat_message", "message": 'msgs'}
-        )
+        msgs=Message.objects.filter(room_id=room)    
+        for m in msgs:
+            async_to_sync(self.channel_layer.group_send)(
+                self.room_group_name, {"type": "chat_message", "message": m.text}
+            )
+        ###########################
+        
         self.accept()
 
     def disconnect(self, close_code):
@@ -26,12 +35,10 @@ class sync_msg(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json["message"]
-
+        save_to_db(self.room_name, message)
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name, {"type": "chat_message", "message": message}
         )
-
     def chat_message(self, event):
         message = event["message"]
-        print(event['message'])
         self.send(text_data=json.dumps({"message": message}))
