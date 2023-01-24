@@ -1,4 +1,4 @@
-.chatenv/
+.vv/
 __pycache__/
 media/
 *.gitignore

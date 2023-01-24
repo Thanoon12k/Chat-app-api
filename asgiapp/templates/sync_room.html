@@ -6,6 +6,7 @@
     <title>Chat Room</title>
 </head>
 <body>
+    <h1>you are in sync room </h1>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
@@ -13,7 +14,7 @@
     <script> ///sync room
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        const chatSocket = new WebSocket( 'ws://'  + window.location.host+ '/sync_rooms/' + roomName + '/'  );
+        const chatSocket = new WebSocket( 'wss://'  + window.location.host+ '/ws/rooms/' + roomName + '/messages/'  );
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);

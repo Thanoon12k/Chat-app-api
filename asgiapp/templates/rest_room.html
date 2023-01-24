@@ -19,7 +19,7 @@
 <script>
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-    const ws = new WebSocket( 'ws://'  + window.location.host+ '/rest_rooms/' + roomName + '/'  );
+    const ws = new WebSocket( 'wss://'  + window.location.host+ '/rest_rooms/' + roomName + '/'  );
   
     ws.onmessage = function (e) {
         document.getElementById("response").textContent = JSON.stringify(JSON.parse(e.data), undefined, 2);

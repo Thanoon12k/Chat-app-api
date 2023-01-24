@@ -13,7 +13,7 @@
     <script> ///async room
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        const chatSocket = new WebSocket( 'ws://'  + window.location.host+ '/sync_rooms/' + roomName + '/'  );
+        const chatSocket = new WebSocket( 'wss://'  + window.location.host+ '/sync_rooms/' + roomName + '/'  );
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
