@@ -1,51 +1,86 @@
-<!-- chat/templates/chat/room.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
+  <meta charset="UTF-8">
+  <title>Generic Api Consumer</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
-    <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/rooms/'
-            + roomName
-            + '/'
-        );
+<button id="list">List</button>
+<button id="retrieve">Retrieve</button>
+<button id="create">Create</button>
+<button id="patch">Patch</button>
+<button id="update">Update</button>
+<button id="delete">Delete</button>
 
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
-        };
+<pre id="response"></pre>
+{{ room_name|json_script:"room-name" }}
+ 
+<script>
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
-        };
+    const ws = new WebSocket( 'ws://'  + window.location.host+ '/rest_rooms/' + roomName + '/'  );
+  
+    ws.onmessage = function (e) {
+        document.getElementById("response").textContent = JSON.stringify(JSON.parse(e.data), undefined, 2);
+        console.log(e.data)
+    }
 
-        document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
+    document.querySelector('#list').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "list",
+            request_id: new Date().getTime()
+        }))
+    };
+
+    document.querySelector('#retrieve').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "retrieve",
+            request_id: new Date().getTime(),
+            pk: 1
+        }))
+    }
+
+    document.querySelector('#create').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "create",
+            request_id: new Date().getTime(),
+            data: {
+                room_id: "1",
+                text: "testpassword123"
             }
-        };
+        }))
+    }
 
-        document.querySelector('#chat-message-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message,
-                'sender':'thanoon '
-            }));
-            messageInputDom.value = '';
-        };
-    </script>
+    document.querySelector('#patch').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "patch",
+            request_id: new Date().getTime(),
+            pk: 2,
+            data: {
+                email: "edited@example.com"
+            }
+        }))
+    }
+
+    document.querySelector('#update').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "update",
+            request_id: new Date().getTime(),
+            pk: 2,
+            data: {
+                username: "user 2"
+            }
+        }))
+    }
+
+    document.querySelector('#delete').onclick = function (e) {
+        ws.send(JSON.stringify({
+            action: "delete",
+            request_id: new Date().getTime(),
+            pk: 2
+        }))
+    }
+</script>
 </body>
 </html>

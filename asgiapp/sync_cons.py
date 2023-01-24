@@ -1,8 +1,8 @@
 import json
+from roomsapp.models import Message,Room
 
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-
 
 class sync_msg(WebsocketConsumer):
     def connect(self):
@@ -10,6 +10,11 @@ class sync_msg(WebsocketConsumer):
         self.room_group_name = "chat_%s" % self.room_name
         async_to_sync(self.channel_layer.group_add)(
             self.room_group_name, self.channel_name
+        )
+        room=Room.objects.filter(name=self.room_name).first()
+        # msgs=Message.objects.filter(room_id=room)
+        async_to_sync(self.channel_layer.group_send)(
+            self.room_group_name, {"type": "chat_message", "message": 'msgs'}
         )
         self.accept()
 
@@ -28,5 +33,5 @@ class sync_msg(WebsocketConsumer):
 
     def chat_message(self, event):
         message = event["message"]
-
+        print(event['message'])
         self.send(text_data=json.dumps({"message": message}))
