@@ -6,6 +6,8 @@ DEBUG = True
 import mimetypes
 
 mimetypes.add_type("text/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
+
 
 
 ALLOWED_HOSTS = ['iraqchatapp.pythonanywhere.com']
