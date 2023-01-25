@@ -5,3 +5,5 @@ media/
 *.zip
 zips/
 staticdata/
+
+redis-cli -u redis://Eng-free-db:3Xu71bQ3LRMiFUkq18DD4RilZEyK6pUK@redis-16356.c299.asia-northeast1-1.gce.cloud.redislabs.com:16356

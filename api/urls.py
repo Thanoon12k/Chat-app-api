@@ -41,7 +41,7 @@ LiveUrls=[
 ]
 DocsUrls=[
 
-      path('docs',include_docs_urls(title='IRAQ CHAT APP')),
+      path('docs/',include_docs_urls(title='IRAQ CHAT APP')),
       path('swagger',get_swagger_view(title='IRAQ CHAT APP')),
       path('shema',get_schema_view(title='IRAQ CHAT APP', description='api for iraq chat app website', version='1.0.0',)
                                            ,name='Schema')
