@@ -3,6 +3,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ftthuz*rg@=r2f*+q-8t358in9&2pe@e-k7pa@3)g!ooquee2k'
 DEBUG = True
+import mimetypes
+
+mimetypes.add_type("text/javascript", ".js", True)
+
 
 ALLOWED_HOSTS = ['iraqchatapp.pythonanywhere.com']
 INSTALLED_APPS = [
