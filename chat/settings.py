@@ -10,7 +10,7 @@ mimetypes.add_type("text/css", ".css", True)
 
 
 
-ALLOWED_HOSTS = ['iraqchatapp.pythonanywhere.com']
+ALLOWED_HOSTS = ['iraqchatapp.pythonanywhere.com','127.0.0.1']
 INSTALLED_APPS = [
     'daphne',
     'channels',
@@ -54,7 +54,7 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['HTML'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
