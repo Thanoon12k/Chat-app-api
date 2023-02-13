@@ -11,8 +11,8 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
         path('admin/', admin.site.urls),
 
-    path('', include('api.urls')),
-    path('api/', include('asgiapp.urls')),
+    path('api/', include('api.urls')),
+    path('asgi/', include('asgiapp.urls')),
     
   
 
