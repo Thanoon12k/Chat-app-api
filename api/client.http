@@ -4,6 +4,16 @@ content-type: application/x-www-form-urlencoded
 
 &pharmacy_name= be beauty 
 ###
+POST http://127.0.0.1:8000/users/user_init HTTP/1.1
+content-type: application/x-www-form-urlencoded
+#   fields=['id','name','status','notification','image']
+
+&name= ahmad23
+&status= be beauty 
+&notification= False 
+&image= be beauty 
+
+###
 POST http://127.0.0.1:8000/rooms/4/ban_member/5 HTTP/1.1
 content-type: application/x-www-form-urlencoded
 

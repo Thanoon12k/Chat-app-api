@@ -5,20 +5,20 @@ from django.utils import timezone
 from .managers import UserManager
 
 class Users(AbstractUser):
-    email               = models.EmailField(null=True,blank=True, verbose_name='Email Address',max_length=255  )
-    name                = models.CharField(unique=True,blank=False,null=False ,max_length=100)
-    birthdate           = models.DateField(default=timezone.now)
-    image               = models.ImageField(null=True,blank=True,upload_to='profile_images')
-    cover_image         = models.ImageField(null=True,blank=True,upload_to='cover_images')
-    gender              = models.CharField(choices=(('m','male'),('f','famle')),default='m',max_length=15)
-    status              = models.CharField(max_length=25,default='-')
-    comments            = models.BooleanField(default=False)
-    private             = models.BooleanField(default=False)
-    notification        = models.BooleanField(default=False)
-    is_banned           = models.BooleanField(default=False)
-    is_admin            = models.BooleanField(default=False)
-    ip               = models.CharField(blank=True,null=True ,max_length=100)
-    mac                = models.CharField(blank=True,null=True ,max_length=100)
+    email               = models.EmailField(null=True,blank=True, verbose_name='البريد الالكتروني ',max_length=255  )
+    name                = models.CharField(unique=True,blank=False,null=False ,max_length=100,verbose_name='الاسم')
+    birthdate           = models.DateField(default=timezone.now,verbose_name='تاريخ الميلاد')
+    image               = models.ImageField(null=True,blank=True,upload_to='profile_images',verbose_name='الصورة الشخصية')
+    cover_image         = models.ImageField(null=True,blank=True,upload_to='cover_images',verbose_name='صورة الغلاف')
+    gender              = models.CharField(choices=(('m','male'),('f','famle')),default='m',max_length=15,verbose_name='الجنس')
+    status              = models.CharField(max_length=25,default='-',verbose_name='الحالة')
+    comments            = models.BooleanField(default=False,verbose_name='التعليفات')
+    private             = models.BooleanField(default=False,verbose_name='الخاص')
+    notification        = models.BooleanField(default=False,verbose_name='الاشعارات')
+    is_banned           = models.BooleanField(default=False,verbose_name='حالة الحضر')
+    is_admin            = models.BooleanField(default=False,verbose_name='ادمن')
+    ip               = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الأي بي')
+    mac                = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الماك')
     
 
     USERNAME_FIELD = 'name'
@@ -39,4 +39,5 @@ class Users(AbstractUser):
     @property
     def username(self):
         return self.name
-    
+    class Meta:
+            verbose_name_plural='المستخدمين'

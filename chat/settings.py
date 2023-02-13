@@ -3,17 +3,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ftthuz*rg@=r2f*+q-8t358in9&2pe@e-k7pa@3)g!ooquee2k'
 DEBUG = True
-import mimetypes
-
-mimetypes.add_type("text/javascript", ".js", True)
-mimetypes.add_type("text/css", ".css", True)
-
-
 
 ALLOWED_HOSTS = ['iraqchatapp.pythonanywhere.com','127.0.0.1']
 INSTALLED_APPS = [
-    'daphne',
-    'channels',
+    # 'daphne',
+    # 'channels',
+    # 'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +22,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+   
  
 ]
 
@@ -68,17 +65,17 @@ TEMPLATES = [
 ]
 
 
-ASGI_APPLICATION = "chat.asgi.application"
+# ASGI_APPLICATION = "chat.asgi.application"
 WSGI_APPLICATION = 'chat.wsgi.application'
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
 ROOT_URLCONF = 'chat.urls'
 
 DATABASES = {

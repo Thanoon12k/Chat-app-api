@@ -6,20 +6,16 @@ from rest_framework_swagger.views import get_swagger_view
 from django.urls import path
 from api.roomsapi.views import *
 from api.usersapi.views import *
-from .views import ListAppUrls
-RootUrls=[
-        path('',ListAppUrls.as_view(),name='list-app-urls') ,
+from api.authapi.views import *
+
+AuthUrls=[
+      path('users/user_init',UserInit.as_view(),name='create-new-account') ,
         ]
 RoomsUrls=[
-        
     path('rooms/',ListRooms.as_view(),name='list-rooms') ,
-    path('rooms/new',CreateRoom.as_view(),name='new-room') ,
-    path('rooms/detail/<int:pk>',DetailRoom.as_view(),name='detail-room') ,
-    
     path('rooms/<int:pk>/messages',ListMessages.as_view(),name='list-messsages') ,
     path('rooms/<int:pk>/messages/new',CreateMessage.as_view(),name='new-messages') ,
-    path('rooms/<int:pk>/messages/<int:msg_id>',DetailMessage.as_view(),name='detail-message') ,
-        
+ 
         ]
 
 UsersUrls=[
@@ -33,12 +29,7 @@ UsersUrls=[
           
            ]
 
-LiveUrls=[
 
-        # path('rooms-live/',LiveRooms.as_asgi(),name='list-rooms') ,
-    
-
-]
 DocsUrls=[
 
       path('docs/',include_docs_urls(title='IRAQ CHAT APP')),
@@ -51,4 +42,4 @@ DocsUrls=[
 
 
 
-urlpatterns=RootUrls+RoomsUrls+LiveUrls+UsersUrls+DocsUrls
+urlpatterns=AuthUrls+RoomsUrls+UsersUrls+DocsUrls
