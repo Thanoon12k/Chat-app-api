@@ -11,10 +11,14 @@ class Users(AbstractUser):
     image               = models.ImageField(null=True,blank=True,upload_to='profile_images',verbose_name='الصورة الشخصية')
     cover_image         = models.ImageField(null=True,blank=True,upload_to='cover_images',verbose_name='صورة الغلاف')
     gender              = models.CharField(choices=(('m','male'),('f','famle')),default='m',max_length=15,verbose_name='الجنس')
+    notification        = models.CharField(choices=(
+                                            ('no_alert','ايقاف الاشعارات'),
+                                            ('just_icon','ايقونة فقط'),
+                                            ('icon_image','ايقونة وصورة')
+                                            ),default='icon_image',max_length=15,verbose_name='الاشعارات')
     status              = models.CharField(max_length=25,default='-',verbose_name='الحالة')
     comments            = models.BooleanField(default=False,verbose_name='التعليفات')
     private             = models.BooleanField(default=False,verbose_name='الخاص')
-    notification        = models.BooleanField(default=False,verbose_name='الاشعارات')
     is_banned           = models.BooleanField(default=False,verbose_name='حالة الحضر')
     is_admin            = models.BooleanField(default=False,verbose_name='ادمن')
     ip               = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الأي بي')
