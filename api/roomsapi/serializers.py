@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer,SerializerMethodField,StringRelatedField
+from rest_framework.serializers import ModelSerializer,SerializerMethodField,StringRelatedField,DateTimeField
 
 from roomsapp.models import Room,Message
 
@@ -10,7 +10,7 @@ class base_room_ser(ModelSerializer):
     def get_users_count(self,obj):
         return obj.users.count()
 class base_message_ser(ModelSerializer):
+    addtime = DateTimeField(format='%A , %I:%M %p')
     class Meta:
         model = Message
-        fields='__all__'
-
+        fields=['id','text','sender','room_id','attachment','addtime']
