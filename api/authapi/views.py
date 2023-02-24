@@ -14,17 +14,15 @@ class UserRegister(generics.CreateAPIView):
     permission_classes=[permissions.BasePermission]
     queryset=Users.objects.all()
     def post(self,*args,**kwargs):
-        data=user_register_ser(self.request.POST).data
-        user=Users.objects.filter(name=data['name']).first()
-        new_user=False
-        if not user:
-            user=Users.objects.create(**data)
-            new_user=True
-             
-
-        token,created=Token.objects.get_or_create(user=user)
+        user=Users.objects.filter(name=self.request.POST['name']).first()
+        if user:
+            return Response('user_exist',422 )
+     
+     
+        data=user_register_ser(self.request.POST).data  
+        user=Users.objects.create(**data)
+        token=Token.objects.create(user=user)
         data['id']=user.id
-        data['new_user']=new_user
         data['token']=token.key
         
         return Response(data)
