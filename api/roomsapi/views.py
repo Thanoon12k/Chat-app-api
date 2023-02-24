@@ -28,9 +28,7 @@ class CreateMessage(generics.CreateAPIView):
     permission_classes=[permissions.BasePermission]
     serializer_class=base_message_ser
     queryset=Message.objects.all()
-    def post(self,*args,**kwargs):
-        print('iam in post now ','+'*40)
-        return super(self).post(args,kwargs)
+  
     def perform_create(self, serializer):
         user=Users.objects.first()
         serializer.save(sender=user)

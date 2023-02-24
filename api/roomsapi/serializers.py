@@ -10,7 +10,9 @@ class base_room_ser(ModelSerializer):
     def get_users_count(self,obj):
         return obj.users.count()
 class base_message_ser(ModelSerializer):
-    addtime = DateTimeField(format='%A , %I:%M %p')
+    addtime = DateTimeField(format='%a , %I:%M %p',read_only=True)
+    sender_name=StringRelatedField(source='sender')
+
     class Meta:
         model = Message
-        fields=['id','text','sender','room_id','attachment','addtime']
+        fields=['id','text','sender','sender_name','room_id','attachment','addtime']
