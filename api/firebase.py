@@ -20,26 +20,29 @@ def SetRoom():
     import random
     
     n = random.randint(1, 100)
-    image_path = 'C:\\Users\\mohsal\\Desktop\\app\\freelancer\\chatapp_backend\\api\\media\\hash.jpg'
-    # with open(image_path, 'rb') as f:
-    #     image_data = f.read()
-    # encoded_image = base64.b64encode(image_data).decode('utf-8')
+    image_path = 'media\hash.jpg'
+    with open(image_path, 'rb') as f:
+        image_data = f.read()
+    encoded_image = base64.b64encode(image_data).decode('utf-8')
 
     data = {
         'id': n,
         'text': 'hi iam the last', 
         'sender': 1,
-        'image': 'encoded_image'
+        'image': encoded_image
     }
    
-    send = database.child('messages').push(data)
+    # send = database.child('messages').push(data)
     messages_resp=database.child('messages').get().val().keys()
-    last_id=list(messages_resp)[-1]
-    last_message = database.child('messages').child(last_id).get().val().values()
+    last_message = database.child('messages').child(list(messages_resp)[-1]).get().val().values()
+    save_image(list(last_message)[1])
     
     return list(last_message)
     
-
+def save_image(image_data):
+    image_data = base64.b64decode(image_data)
+    with open('media/my.jpg', 'wb') as f:
+            f.write(image_data)
     
 def GetName():
     name = database.child('Rooms').get().val()
