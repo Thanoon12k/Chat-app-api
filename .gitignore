@@ -1,8 +1,9 @@
 /.env/
 /__pycache__/
-media/
+
 *.gitignore
 *.zip
 zips/
+*.sqlite3
 staticdata/
 

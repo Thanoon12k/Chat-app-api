@@ -1,5 +1,5 @@
 
-get http://127.0.0.1:8000/rooms-live HTTP/1.1
+get http://127.0.0.1:8000 HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
 &pharmacy_name= be beauty 

@@ -4,11 +4,13 @@ from rest_framework_swagger.views import get_swagger_view
 
 
 from django.urls import path
+from .views import Root
 from api.roomsapi.views import *
 from api.usersapi.views import *
 from api.authapi.views import *
 
 AuthUrls=[
+        path('',Root,name='rootpage'),
       path('users/user_register',UserRegister.as_view(),name='create-new-account') ,
         ]
 RoomsUrls=[
