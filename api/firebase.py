@@ -1,7 +1,7 @@
 import pyrebase
-import requests
 import base64
 
+import random
 config = {
     'apiKey': "AIzaSyC5-uBI417-LL6tVvQhLXOQ7pXSiE2SeN8",
     'authDomain': "chatapp-6fbfd.firebaseapp.com",
@@ -16,37 +16,54 @@ firebase = pyrebase.initialize_app(config)
 authe = firebase.auth()
 database = firebase.database()
 
-def SetRoom():
-    import random
-    
-    n = random.randint(1, 100)
-    image_path = 'media\hash.jpg'
-    with open(image_path, 'rb') as f:
-        image_data = f.read()
-    encoded_image = base64.b64encode(image_data).decode('utf-8')
 
+
+def SendMessage(id,sender,sender_name,room_id,text,sendtime):
+    
+    # image=get_image_data('media\hash.jpg')
 
     data = {
-        'id': n,
-        'sender': 1,
-        'sender_name':f'thanoon {n}',
-        'text': 'help me', 
-        'attachment': f'singleimage{n}',
-        'DateTime':'thursday',
+        'id': 5,
+        'sender': sender,
+        'sender_name':sender_name,
+        'room_id':room_id,
+        'text': text, 
+        'attachment': None,
+        'DateTime':sendtime,
     }
    
     send = database.child('messages').push(data)
-    messages_resp=database.child('messages').get().val().keys()
-    last_message = database.child('messages').child(list(messages_resp)[-1]).get().val().values()
-    # save_image(list(last_message)[1])
-    
-    return list(last_message)
-    
+    return 'message_sended_ok'
+
 def save_image(image_data):
     image_data = base64.b64decode(image_data)
     with open('media/my.jpg', 'wb') as f:
             f.write(image_data)
+def get_image_data(image_path):
     
+    with open(image_path, 'rb') as f:
+        image_data = f.read()
+    encoded_image = base64.b64encode(image_data).decode('utf-8')
+    return encoded_image
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def GetName():
     name = database.child('Rooms').get().val()
     # print(f'name : {name}')
