@@ -25,17 +25,20 @@ def SetRoom():
         image_data = f.read()
     encoded_image = base64.b64encode(image_data).decode('utf-8')
 
+
     data = {
         'id': n,
-        'text': 'hi iam the last', 
         'sender': 1,
-        'image': encoded_image
+        'sender_name':f'thanoon {n}',
+        'text': 'help me', 
+        'attachment': f'singleimage{n}',
+        'DateTime':'thursday',
     }
    
-    # send = database.child('messages').push(data)
+    send = database.child('messages').push(data)
     messages_resp=database.child('messages').get().val().keys()
     last_message = database.child('messages').child(list(messages_resp)[-1]).get().val().values()
-    save_image(list(last_message)[1])
+    # save_image(list(last_message)[1])
     
     return list(last_message)
     
