@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='message',
-            name='attachment',
+            name='image',
             field=models.FileField(blank=True, upload_to='', verbose_name='المرفقات '),
         ),
         migrations.AlterField(

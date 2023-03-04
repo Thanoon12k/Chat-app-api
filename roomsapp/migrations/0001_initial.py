@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('text', models.CharField(blank=True, max_length=200)),
-                ('attachment', models.FileField(blank=True, upload_to='')),
+                ('image', models.FileField(blank=True, upload_to='')),
                 ('addtime', models.DateTimeField(auto_now_add=True)),
             ],
             options={

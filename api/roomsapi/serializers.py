@@ -3,16 +3,14 @@ from rest_framework.serializers import ModelSerializer,SerializerMethodField,Str
 from roomsapp.models import Room,Message
 
 class base_room_ser(ModelSerializer):
-    users_count=SerializerMethodField()
     class Meta:
         model=Room
-        fields=['id','name','password','admins_password','owner','users_count','image','addtime']
-    def get_users_count(self,obj):
-        return obj.users.count()
+        fields=['id','name','password','users_count','image','addtime']
+   
 class base_message_ser(ModelSerializer):
     sendtime = DateTimeField(format='%a , %I:%M %p',read_only=True)
     sender_name=StringRelatedField(source='sender')
 
     class Meta:
         model = Message
-        fields=['id','text','sender','sender_name','room_id','attachment','sendtime']
+        fields=['id','text','sender','sender_name','room_id','image','sendtime']

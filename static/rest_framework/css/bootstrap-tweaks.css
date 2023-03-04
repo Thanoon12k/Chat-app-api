@@ -98,7 +98,7 @@ html {
 
 body {
   background: url("../img/grid.png") repeat-x;
-  background-attachment: fixed;
+  background-image: fixed;
 }
 
 #content {

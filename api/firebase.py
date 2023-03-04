@@ -27,8 +27,8 @@ def SendMessage(id,sender,sender_name,room_id,text,sendtime):
         'sender_name':sender_name,
         'room_id':room_id,
         'text': text, 
-        'attachment': None,
-        'addtime':sendtime,
+        'image': None,
+        'sendtime':sendtime,
     }
    
     send = database.child('messages').push(data)
