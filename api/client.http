@@ -8,7 +8,7 @@ POST http://127.0.0.1:8000/rooms/1/messages/new HTTP/1.1
 content-type: application/json
 #   fields=['id','name','status','notification','image']
 
-{"text":"bobo","room_id":2,"sender":1,"sender_name":"thanoon1","atachment":"null","addtime":"1/3/2023"}
+{"text":"bobo","room_id":2,"sender":1,"sender_name":"thanoon1","atachment":"null","sendtime":"1/3/2023"}
 
 ###
 POST http://127.0.0.1:8000/rooms/4/ban_member/5 HTTP/1.1

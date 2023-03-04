@@ -28,7 +28,7 @@ class Message(models.Model):
     text = models.CharField(max_length=200, blank=True,verbose_name='الرسالة')
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE,verbose_name='الغرفة')
     attachment = models.FileField(blank=True,verbose_name='المرفقات ')
-    addtime = models.DateTimeField(auto_now_add=True,verbose_name='تاريخ الأنشاء')
+    sendtime = models.DateTimeField(auto_now_add=True,verbose_name='تاريخ الأنشاء')
 
     class Meta:
         verbose_name_plural='الدردشات '

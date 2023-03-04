@@ -20,7 +20,6 @@ database = firebase.database()
 
 def SendMessage(id,sender,sender_name,room_id,text,sendtime):
     
-    # image=get_image_data('media\hash.jpg')
 
     data = {
         'id': 5,
@@ -29,7 +28,7 @@ def SendMessage(id,sender,sender_name,room_id,text,sendtime):
         'room_id':room_id,
         'text': text, 
         'attachment': None,
-        'DateTime':sendtime,
+        'addtime':sendtime,
     }
    
     send = database.child('messages').push(data)

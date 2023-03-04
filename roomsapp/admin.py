@@ -5,7 +5,7 @@ from.models import Room,Message
 class RoomAdmin(admin.ModelAdmin):
      list_display=('name','owner','password')
 class MessageAdmin(admin.ModelAdmin):
-     list_display=('sender','text','attachment','room_id','addtime')
+     list_display=('sender','text','attachment','room_id','sendtime')
     
 
 admin.site.register(Room, RoomAdmin)

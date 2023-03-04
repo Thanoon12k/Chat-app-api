@@ -38,7 +38,7 @@ class CreateMessage(generics.CreateAPIView):
         headers = self.get_success_headers(serializer.data)
         print('data : ',serializer.data['text'])
 
-        SendMessage(serializer.data['id'],serializer.data['sender'], serializer.data['sender_name'], serializer.data['room_id'], serializer.data['text'], serializer.data['addtime'])
+        SendMessage(serializer.data['id'],serializer.data['sender'], serializer.data['sender_name'], serializer.data['room_id'], serializer.data['text'], serializer.data['sendtime'])
        
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
