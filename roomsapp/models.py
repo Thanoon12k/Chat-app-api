@@ -8,7 +8,7 @@ class Room(models.Model):
     name            =models.CharField(max_length=50,verbose_name='اسم الغرفة')
     password        =models.CharField(max_length=25,verbose_name='كلمة المرور',default='0')
     admins_password        =models.CharField(max_length=25,null=True)
-    image               = models.ImageField(upload_to='media/rooms_images',verbose_name='الصورة')    
+    image               = models.ImageField(upload_to='rooms_images',verbose_name='الصورة')    
     users           =models.ManyToManyField(Users,blank=True,related_name='room_users',verbose_name='الأعضاء')
     admin_users           =models.ManyToManyField(Users,blank=True,related_name='room_admins',verbose_name='المسؤلين')
     banned_users           =models.ManyToManyField(Users,blank=True,related_name='room_banned_users',verbose_name='الاعضاء المحضورين')
@@ -27,7 +27,7 @@ class Message(models.Model):
     sender = models.ForeignKey(Users, on_delete=models.SET_NULL,null=True, related_name='message_sender',verbose_name='المرسل')
     text = models.CharField(max_length=200, blank=True,verbose_name='الرسالة')
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE,verbose_name='الغرفة')
-    image               = models.ImageField(upload_to='media/message_images',verbose_name='الصورة')    
+    image               = models.ImageField(upload_to='message_images',verbose_name='الصورة')    
     sendtime = models.DateTimeField(auto_now_add=True,verbose_name='تاريخ الأنشاء')
 
     class Meta:

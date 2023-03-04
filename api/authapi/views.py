@@ -22,6 +22,7 @@ class UserRegister(generics.CreateAPIView):
         data=user_register_ser(self.request.POST).data  
         user=Users.objects.create(**data)
         token=Token.objects.create(user=user)
+        
         data['id']=user.id
         data['token']=token.key
         
