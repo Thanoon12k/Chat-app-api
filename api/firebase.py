@@ -18,16 +18,25 @@ database = firebase.database()
 
 
 
-def SendMessage(id,sender,sender_name,room_id,text,sendtime):
+def SendMessage(
+    id,
+    sender,
+    sender_name,
+    sender_image,
+    room_id,
+    text,
+    image,
+    sendtime):
     
 
     data = {
         'id': 5,
         'sender': sender,
         'sender_name':sender_name,
+        'sender_image':sender_image,
         'room_id':room_id,
         'text': text, 
-        'image': None,
+        'image': image,
         'sendtime':sendtime,
     }
    
