@@ -36,10 +36,13 @@ class CreateMessage(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        print('data : ',serializer.data['text'])
-
+        
         SendMessage(serializer.data['id'],serializer.data['sender'], serializer.data['sender_name'], serializer.data['room_id'], serializer.data['text'], serializer.data['sendtime'])
-       
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        response=serializer.data
+        user=Users.objects.filter(id=response['id']).first()
+        if user:
+            response['sender_image']=user.image
+        print(f'message response {response}')
+        return Response(response, status=status.HTTP_201_CREATED, headers=headers)
 
     

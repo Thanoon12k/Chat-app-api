@@ -27,7 +27,7 @@ class Message(models.Model):
     sender = models.ForeignKey(Users, on_delete=models.SET_NULL,null=True, related_name='message_sender',verbose_name='المرسل')
     text = models.CharField(max_length=200, blank=True,verbose_name='الرسالة')
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE,verbose_name='الغرفة')
-    image               = models.ImageField(upload_to='message_images',verbose_name='الصورة')    
+    image               = models.ImageField(upload_to='message_images',verbose_name='الصورة',null=True)    
     sendtime = models.DateTimeField(auto_now_add=True,verbose_name='تاريخ الأنشاء')
 
     class Meta:

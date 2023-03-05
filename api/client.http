@@ -1,18 +1,25 @@
 
-get http://127.0.0.1:8000/rooms/1/messages HTTP/1.1
+get http://127.0.0.1:8000/rooms/2/messages HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
 &pharmacy_name= be beauty 
+
+
+
+
 ###
 POST http://127.0.0.1:8000/rooms/1/messages/new HTTP/1.1
 content-type: application/json
 
-{"text":"bobo","room_id":2,"sender":1,"sender_name":"thanoon1","atachment":"null","sendtime":"1/3/2023"}
+{"text":"bobo","room_id":2,"sender":32,"sender_name":"thanoon1","image":null,"sendtime":"1/3/2023"}
+
+
+
 ###
 POST http://127.0.0.1:8000/users/user_register HTTP/1.1
 content-type: application/json
 
-{"name":"bycc","room_id":2,"sender":1,"sender_name":"thanoon1","atachment":"null","sendtime":"1/3/2023"}
+{"name":"bycc","room_id":2,"sender":1,"sender_name":"thanoon1","image":null,"sendtime":"1/3/2023"}
 
 ###
 POST http://127.0.0.1:8000/rooms/4/ban_member/5 HTTP/1.1
