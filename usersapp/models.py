@@ -11,6 +11,7 @@ class Users(AbstractUser):
     image               = models.ImageField(null=True,blank=True,upload_to='profile_images',verbose_name='الصورة الشخصية')
     cover_image         = models.ImageField(null=True,blank=True,upload_to='cover_images',verbose_name='صورة الغلاف')
     gender              = models.CharField(choices=(('m','male'),('f','famle')),default='m',max_length=15,verbose_name='الجنس')
+    token              = models.CharField(max_length=150,null=True,blank=True,verbose_name='توكن')
     notification        = models.CharField(choices=(
                                             ('no_alert','ايقاف الاشعارات'),
                                             ('just_icon','ايقونة فقط'),
@@ -45,3 +46,20 @@ class Users(AbstractUser):
         return self.name
     class Meta:
             verbose_name_plural='المستخدمين'
+
+
+class Notification(models.Model):
+    sender          = models.ForeignKey('usersapp.Users', related_name='sender_notify',on_delete=models.CASCADE,  )
+    reception_id    = models.ForeignKey('usersapp.Users',blank=True,null=True, on_delete=models.SET_NULL, related_name='recieption_notify', )
+    room_id         = models.ForeignKey('roomsapp.Room',blank=True,null=True, on_delete=models.SET_NULL, related_name='room_notify', )
+    token            = models.CharField(blank=True,null=True,max_length=200)
+    url             =models.CharField(max_length=150,blank=True)
+    is_read          = models.BooleanField(default=False)
+    title            = models.CharField(blank=True,null=True,max_length=100,default='title --')
+    body     = models.TextField(blank=True,null=True,default='desc --')
+    addtime       = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-id']
+        verbose_name_plural='الاشعارات'
+    def __str__(self):
+        return str(self.title)

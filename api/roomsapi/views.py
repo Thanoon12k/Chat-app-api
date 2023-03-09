@@ -38,10 +38,10 @@ class CreateMessage(generics.CreateAPIView):
         headers = self.get_success_headers(serializer.data)
       
         SendMessage(
-            serializer.data['id'],
-            serializer.data['sender'],
+             serializer.data['id'],
+             serializer.data['sender'],
              serializer.data['sender_name'],
-            serializer.data['sender_image'],
+             serializer.data['sender_image'],
              serializer.data['room_id'],
              serializer.data['text'],
              serializer.data['image'],

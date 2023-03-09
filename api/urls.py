@@ -8,10 +8,11 @@ from .views import Root
 from api.roomsapi.views import *
 from api.usersapi.views import *
 from api.authapi.views import *
+from api.notificationapi.views import *
 
 AuthUrls=[
         path('',Root,name='rootpage'),
-      path('users/user_register',UserRegister.as_view(),name='create-new-account') ,
+        path('users/user_register',UserRegister.as_view(),name='create-new-account') ,
         ]
 RoomsUrls=[
     path('rooms/',ListRooms.as_view(),name='list-rooms') ,
@@ -31,7 +32,18 @@ UsersUrls=[
           
            ]
 
+NotifyUrls=[
 
+            
+    path('all_notification',AllNotification.as_view(),name='all-notifications'),
+    path('user_notification',UserNotify.as_view(),name='user-notifications'),
+    path('last_notification',LastNotify.as_view(),name='last-notifications'),
+    path('notification_set_read/<int:pk>',NotifySetRead.as_view(),name='set_read-notifications'),
+    path('notification_destroy/<int:pk>',NotifyDestroy.as_view(),name='set_read-notifications'),
+        ]
+    
+
+        
 DocsUrls=[
 
       path('docs',include_docs_urls(title='IRAQ CHAT APP')),
@@ -44,4 +56,4 @@ DocsUrls=[
 
 
 
-urlpatterns=AuthUrls+RoomsUrls+UsersUrls+DocsUrls
+urlpatterns=RoomsUrls+UsersUrls+AuthUrls+NotifyUrls+DocsUrls

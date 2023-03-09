@@ -5,6 +5,4 @@ class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
         fields = ['name', 'password', 'image']
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+        
