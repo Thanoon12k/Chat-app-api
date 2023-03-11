@@ -14,3 +14,14 @@ class user_register_ser(ModelSerializer):
         token,create=Token.objects.get_or_create(user=user)
         return token.key
 
+class user_update_ser(ModelSerializer):
+    class Meta:
+        model=Users
+        fields=['id','name','status','birthdate','gender','image','comments','private','notifications']
+    
+class user_logout_ser(ModelSerializer):
+    class Meta:
+        model=Users
+        fields=['id','is_active']
+    
+

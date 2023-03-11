@@ -17,11 +17,10 @@ content-type: application/json
 
 
 ###
-POST http://127.0.0.1:8000/users/user_register HTTP/1.1
+PUT http://127.0.0.1:8000/users/32/user_update HTTP/1.1
 content-type: application/json
 
-{"name":"bycc","room_id":2,"sender":1,"sender_name":"thanoon1","image":null,"sendtime":"1/3/2023"}
-
+{"is_active":true}
 ###
 POST http://127.0.0.1:8000/rooms/4/ban_member/5 HTTP/1.1
 content-type: application/x-www-form-urlencoded
@@ -41,7 +40,7 @@ Authorization: token 98ca7ccbe04374cb5981b7e2c2c88280e89c1109
 &image=iamgey
 
 ###
-post http://127.0.0.1:8000/usercart/send_menu/1 HTTP/1.1
+put http://127.0.0.1:8000/users/32/user_logout/ HTTP/1.1
 content-type: application/x-www-form-urlencoded
 Authorization: token 4ce82a3b1a1d33d99c289fea661fcfb2703ad3ba
 

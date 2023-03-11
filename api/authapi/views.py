@@ -16,4 +16,20 @@ class UserRegister(generics.CreateAPIView):
     serializer_class=user_register_ser
 
    
+ 
+class UserUpdate(generics.UpdateAPIView):
+    """ list of all rooms """
+    permission_classes=[permissions.BasePermission]
+    queryset=Users.objects.all()
+    serializer_class=user_register_ser
+
+   
+class UserLogOut(generics.UpdateAPIView):
+    """ list of all rooms """
+    permission_classes=[permissions.BasePermission]
+    queryset=Users.objects.all()
+    serializer_class=user_logout_ser
+    
+
+   
   

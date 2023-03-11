@@ -13,6 +13,8 @@ from api.notificationapi.views import *
 AuthUrls=[
         path('',Root,name='rootpage'),
         path('users/user_register',UserRegister.as_view(),name='create-new-account') ,
+        path('users/<int:pk>/user_update',UserUpdate.as_view(),name='update-user-account') ,
+        path('users/<int:pk>/user_logout',UserLogOut.as_view(),name='logout-user-account') ,
         ]
 RoomsUrls=[
     path('rooms/',ListRooms.as_view(),name='list-rooms') ,
