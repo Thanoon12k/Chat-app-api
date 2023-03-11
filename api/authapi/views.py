@@ -17,11 +17,11 @@ class UserRegister(generics.CreateAPIView):
 
    
  
-class UserUpdate(generics.UpdateAPIView):
+class UserReteriveUpdate(generics.RetrieveUpdateAPIView):
     """ list of all rooms """
     permission_classes=[permissions.BasePermission]
     queryset=Users.objects.all()
-    serializer_class=user_register_ser
+    serializer_class=user_update_ser
 
    
 class UserLogOut(generics.UpdateAPIView):

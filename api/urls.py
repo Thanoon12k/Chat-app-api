@@ -13,9 +13,9 @@ from api.notificationapi.views import *
 AuthUrls=[
         path('',Root,name='rootpage'),
         path('users/user_register',UserRegister.as_view(),name='create-new-account') ,
-        path('users/<int:pk>/user_update',UserUpdate.as_view(),name='update-user-account') ,
+        path('users/<int:pk>/user_ret_update',UserReteriveUpdate.as_view(),name='user-reterive-update-account') ,
         path('users/<int:pk>/user_logout',UserLogOut.as_view(),name='logout-user-account') ,
-        ]
+       ]
 RoomsUrls=[
     path('rooms/',ListRooms.as_view(),name='list-rooms') ,
     path('rooms/<int:pk>/messages',ListMessages.as_view(),name='list-messsages') ,

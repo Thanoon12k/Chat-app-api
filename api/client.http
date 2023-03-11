@@ -17,7 +17,7 @@ content-type: application/json
 
 
 ###
-PUT http://127.0.0.1:8000/users/32/user_update HTTP/1.1
+get  http://127.0.0.1:8000/users/32/user_ret_update HTTP/1.1
 content-type: application/json
 
 {"is_active":true}
