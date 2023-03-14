@@ -22,8 +22,9 @@ class Users(AbstractUser):
     status              = models.CharField(max_length=25,default='-',verbose_name='الحالة')
     is_banned           = models.BooleanField(default=False,verbose_name='حالة الحضر')
     is_admin            = models.BooleanField(default=False,verbose_name='ادمن')
-    ip               = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الأي بي')
-    mac                = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الماك')
+    stars               =models.IntegerField(default=0)
+    ip                  = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الأي بي')
+    mac                 = models.CharField(blank=True,null=True ,max_length=100,verbose_name='الماك')
     
 
     USERNAME_FIELD = 'name'
@@ -63,3 +64,23 @@ class Notification(models.Model):
         verbose_name_plural='الاشعارات'
     def __str__(self):
         return str(self.title)
+
+
+class Comments(models.Model):
+    reception       = models.ForeignKey(Users, on_delete=models.CASCADE,related_name='user_comments',verbose_name='المستلم')
+    sender          = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='comment_sender',verbose_name='المرسل')
+    text            = models.CharField(max_length=200, blank=True,verbose_name='الرسالة')
+    token           = models.CharField(blank=True,null=True,max_length=200,verbose_name='توكن')
+    image           = models.ImageField(upload_to='comments_images',verbose_name='الصورة',null=True,blank=True)    
+    sendtime        = models.DateTimeField(auto_now_add=True,verbose_name='تاريخ الأنشاء')
+
+    class Meta:
+        verbose_name_plural='التعليقات '
+
+        ordering = ('-id',)
+    def __str__(self):
+        return f'sender: {self.sender.name} to {self.reception.name}'
+    def sender_image(self):
+        url='http://127.0.0.1:8000/media/'+str(self.sender.image)
+      
+        return url

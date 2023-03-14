@@ -17,7 +17,7 @@ class user_register_ser(ModelSerializer):
 class user_update_ser(ModelSerializer):
     class Meta:
         model=Users
-        fields=['id','name','status','birthdate','gender','image','comments','private','notification']
+        fields=['id','name','status','birthdate','gender','image','comments','stars','private','notification']
     
 class user_logout_ser(ModelSerializer):
     class Meta:

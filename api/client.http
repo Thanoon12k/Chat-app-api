@@ -1,8 +1,10 @@
 
-get http://127.0.0.1:8000/all_notification HTTP/1.1
+delete   http://127.0.0.1:8000/users/4/remove_comment HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
-&pharmacy_name= be beauty 
+&sender=34
+&reception=33
+&text=blooo
 
 ###
 POST http://127.0.0.1:8000/rooms/1/messages/new HTTP/1.1

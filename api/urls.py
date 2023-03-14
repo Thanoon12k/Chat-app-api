@@ -20,11 +20,8 @@ RoomsUrls=[
     path('rooms/',ListRooms.as_view(),name='list-rooms') ,
     path('rooms/<int:pk>/messages',ListMessages.as_view(),name='list-messsages') ,
     path('rooms/<int:pk>/messages/new',CreateMessage.as_view(),name='new-messages') ,
- 
-        ]
-
-UsersUrls=[
-        
+]
+MembersUrls=[
         path('rooms/<int:pk>/active_users',RoomActiveMembers.as_view(),name='room-active-members-list') ,
         path('rooms/<int:pk>/banned_users',RoomBannedMembers.as_view(),name='room-banned-members-list') ,
         path('rooms/<int:pk>/add_member/<int:user_id>',RoomAddMember.as_view(),name='new-member') ,
@@ -32,7 +29,16 @@ UsersUrls=[
         path('rooms/<int:pk>/ban_member/<int:user_id>',RoomBanMember.as_view(),name='ban-member') ,
         path('rooms/<int:pk>/kick_member/<int:user_id>',RoomKickMember.as_view(),name='kick-member') ,
           
-           ]
+          
+        ]
+
+UsersUrls=[
+        path('users/<int:pk>/view/',UsersView.as_view(),name='user-view-account') ,
+        path('users/add_comment',AddComment.as_view(),name='user-view-account') ,
+        path('users/<int:pk>/remove_comment',RemoveComment.as_view(),name='user-view-account') ,
+        path('users/stars_update',StarsUpdate.as_view(),name='user-view-account') ,
+        
+      ]
 
 NotifyUrls=[
 
@@ -58,4 +64,4 @@ DocsUrls=[
 
 
 
-urlpatterns=RoomsUrls+UsersUrls+AuthUrls+NotifyUrls+DocsUrls
+urlpatterns=RoomsUrls+MembersUrls+UsersUrls+AuthUrls+NotifyUrls+DocsUrls
