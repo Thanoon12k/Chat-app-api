@@ -1,10 +1,10 @@
 
-delete   http://127.0.0.1:8000/users/4/remove_comment HTTP/1.1
+put    http://38.242.140.198/users/36/stars_update HTTP/1.1
 content-type: application/x-www-form-urlencoded
 
-&sender=34
+& stars=34
 &reception=33
-&text=blooo
+&text=blooomm
 
 ###
 POST http://127.0.0.1:8000/rooms/1/messages/new HTTP/1.1

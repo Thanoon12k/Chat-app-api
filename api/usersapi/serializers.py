@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer,SerializerMethodField
+from rest_framework.serializers import ModelSerializer,SerializerMethodField,StringRelatedField,DateTimeField,ImageField
 
 from roomsapp.models import Room
 from usersapp.models import Users,Notification,Comments
@@ -11,9 +11,11 @@ class base_user_ser(ModelSerializer):
 
 
 class user_comments_ser(ModelSerializer):
+    sendtime = DateTimeField(format='%a , %I:%M %p',read_only=True)
+    sender_name=StringRelatedField(source='sender')
     class Meta:
         model=Comments
-        fields=['id','sender','reception','text','image','sender_image','token','sendtime']
+        fields=['id','sender','sender_name','reception','text','image','sender_image','sendtime']
 
 
 class user_view_ser(ModelSerializer):

@@ -1,0 +1,76 @@
+ CREATE DATABASE chatapp;
+CREATE USER thanoon WITH PASSWORD 'password';
+ALTER ROLE thanoon SET client_encoding TO 'utf8';
+ALTER ROLE thanoon SET default_transaction_isolation TO 'read committed';
+ALTER ROLE thanoon SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE chatapp TO thanoon;
+
+
+
+
+su thanoon
+git clone
+mgriatioon
+collectstatic
+runserver 0.0.0.0:8000  (test webs ite on ip:8000   then work ok)
+
+2- setup guincorn
+
+gunicorn --bind 0.0.0.0:8000 caht.wsgi
+addd serives file
+'''
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=thanoon
+Group=www-data
+WorkingDirectory=/home/thanoon/Chat-app-api
+ExecStart=/home/thanoon/Chat-app-api/.env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/thanoon/Chat-app-api/chat.sock chat.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+'''
+
+sudo systemctl start gunicorn && sudo systemctl enable gunicorn
+sudo systemctl status gunicorn
+//real time gunicorn log
+sudo journalctl -u -f gunicorn
+
+log of gunicorn
+sudo systemctl daemon-reload && sudo systemctl restart gunicorn && sudo systemctl status gunicorn
+
+
+3- setup nginx
+
+ceeate ngnix file
+sudo ln -s /etc/nginx/sites-available/chatapp /etc/nginx/sites-enabled
+
+'''
+server {
+    listen 80;
+    server_name 38.242.140.198;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/thanoon/Chat-app-api;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/thanoon/Chat-app-api/gunicorn.sock;
+    }
+}
+'''
+change file nginx.config www-data too root  for fixing 13 premession deined error
+
+sudo nginx -t && sudo systemctl restart nginx
+sudo tail -F /var/log/nginx/error.log
+sudo tail -F /var/log/nginx/acccess.log
+
+resarts>>
+
+sudo shutdown -r now
+

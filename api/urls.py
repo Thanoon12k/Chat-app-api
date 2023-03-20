@@ -33,10 +33,10 @@ MembersUrls=[
         ]
 
 UsersUrls=[
-        path('users/<int:pk>/view/',UsersView.as_view(),name='user-view-account') ,
+        path('users/<int:pk>/view',UsersView.as_view(),name='user-view-account') ,
         path('users/add_comment',AddComment.as_view(),name='user-view-account') ,
         path('users/<int:pk>/remove_comment',RemoveComment.as_view(),name='user-view-account') ,
-        path('users/stars_update',StarsUpdate.as_view(),name='user-view-account') ,
+        path('users/<int:pk>/stars_update',StarsUpdate.as_view(),name='user-view-account') ,
         
       ]
 

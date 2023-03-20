@@ -81,6 +81,6 @@ class Comments(models.Model):
     def __str__(self):
         return f'sender: {self.sender.name} to {self.reception.name}'
     def sender_image(self):
-        url='http://127.0.0.1:8000/media/'+str(self.sender.image)
+        url='http://38.242.140.198/media/'+str(self.sender.image)
       
         return url
